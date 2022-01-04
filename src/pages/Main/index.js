@@ -13,9 +13,6 @@ const Main = ({navigation}) => {
     {key: '4', description: 'Lazer', amount: 250},
     {key: '5', description: 'Outros', amount: 1200},
   ];
-  // navigation.navigate("NewEntry")
- 
-  
 
   return (
     <View style={styles.container}>
@@ -25,11 +22,12 @@ const Main = ({navigation}) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background
-  }
+    backgroundColor: Colors.background,
+  },
 });
 
 export default Main;
