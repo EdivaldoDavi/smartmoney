@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 import React, {useState} from 'react';
 import {View, TextInput, Button, StyleSheet} from 'react-native';
+import NewEntryInput from './NewEntryInput';
+
 // eslint-disable-next-line quotes
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -19,33 +21,36 @@ const NewEntry = ({navigation}) => {
     if (parseFloat(amount) !== 0) {
       return true;
     }
+
     return false;
   };
+
   const onSave = () => {
     const data = {
       amount: parseFloat(amount),
     };
-    console.log('NewEntry ::: onSave ', data);
+
+    console.log('NewEntry :: save ', data);
     saveEntry(data, entry);
     onClose();
   };
+
   const onDelete = () => {
     deleteEntry(entry);
     onClose();
   };
+
   const onClose = () => {
     navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
       <BalanceLabel />
 
       <View>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setAmount(text)}
-          value={amount}
-        />
+        <NewEntryInput value={amount} onChangeValue={setAmount} />
+
         <TextInput style={styles.input} />
         <Button title="GPS" />
         <Button title="Camera" />

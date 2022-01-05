@@ -41,4 +41,3 @@ export const deleteEntry = async entry => {
     console.oerror("deleteEntry :: error on delete objetc:", JSON.stringify(entry));
   }
 };
-
