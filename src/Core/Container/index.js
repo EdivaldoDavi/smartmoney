@@ -3,8 +3,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import Colors from '../../../styles/Colors';
-
+import Colors from './../../styles/Colors';
 const Container = ({
   title,
   actionLabelText,

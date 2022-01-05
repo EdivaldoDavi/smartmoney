@@ -1,13 +1,12 @@
 /* eslint-disable no-undef */
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import React, {useState} from 'react';
+import {View, TextInput, Button, StyleSheet} from 'react-native';
 // eslint-disable-next-line quotes
-import { saveEntry } from "../../services/Entries";
-import { deleteEntry } from "../../services/Entries";
-import BalanceLabel from "../../components/BalanceLabel";
-
-const NewEntry = ({ navigation }) => {
-  const currentBalance = 2065.35;
+import {saveEntry} from '../../services/Entries';
+import {deleteEntry} from '../../services/Entries';
+import BalanceLabel from '../../components/BalanceLabel';
+import Colors from '../../styles/Colors';
+const NewEntry = ({navigation}) => {
   const entry = navigation.getParam('entry', {
     id: null,
     amount: '0.00',
@@ -26,7 +25,7 @@ const NewEntry = ({ navigation }) => {
     const data = {
       amount: parseFloat(amount),
     };
-    console.log("NewEntry ::: onSave ", data);
+    console.log('NewEntry ::: onSave ', data);
     saveEntry(data, entry);
     onClose();
   };
@@ -39,10 +38,11 @@ const NewEntry = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <BalanceLabel currentBalance={currentBalance} />
+      <BalanceLabel />
 
       <View>
-        <TextInput style={styles.input} 
+        <TextInput
+          style={styles.input}
           onChangeText={text => setAmount(text)}
           value={amount}
         />
@@ -55,7 +55,7 @@ const NewEntry = ({ navigation }) => {
         <Button
           title="Adicionar"
           onPress={() => {
-          isValid() && onSave();
+            isValid() && onSave();
           }}
         />
         <Button title="Excluir" onPress={onDelete} />
@@ -68,12 +68,13 @@ const NewEntry = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    backgroundColor: Colors.background,
+    padding: 10,
   },
   input: {
-    borderColor: "#000",
-    borderWidth: 1
-  }
+    borderColor: '#000',
+    borderWidth: 1,
+  },
 });
 
 export default NewEntry;

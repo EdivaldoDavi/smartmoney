@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Container from '../Core/Container';
+import Container from '../../Core/Container';
 
 import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
@@ -12,18 +12,18 @@ const entriesGrouped = [
   {key: '4', description: 'Lazer', amount: 250},
   {key: '5', description: 'Outros', amount: 1200},
 ];
-
-const EntrySummary = () => {
+const EntrySummary = ({onPressActionButton}) => {
   return (
     <Container
       title="Categorias"
       actionLabelText="Últimos 7 dias"
       actionButtonText="Ver mais"
-      onPressActionButton={() => {}}>
+      onPressActionButton={onPressActionButton}>
       <EntrySummaryChart />
       <EntrySummaryList entriesGrouped={entriesGrouped} />
     </Container>
   );
 };
+
 
 export default EntrySummary;
