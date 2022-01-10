@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Button, FlatList, StyleSheet} from 'react-native';
+import {FlatList} from 'react-native';
 import Container from '../../Core/Container';
 
 import EntryListItem from './EntryListItem';
 
 import {getEntries} from '../../services/Entries';
+import {dropDB} from '../../services/Realm';
 
 const EntryList = ({onEntryPress, onPressActionButton}) => {
   const [entries, setEntries] = useState([]);
@@ -41,6 +42,5 @@ const EntryList = ({onEntryPress, onPressActionButton}) => {
     </Container>
   );
 };
-
 
 export default EntryList;

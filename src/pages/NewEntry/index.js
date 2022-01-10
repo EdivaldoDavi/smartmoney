@@ -2,20 +2,29 @@
 import React, {useState} from 'react';
 import {View, TextInput, Button, StyleSheet} from 'react-native';
 import NewEntryInput from './NewEntryInput';
+import NewEntryCategoryPicker from './NewEntryCategoryPicker';
+
+
 
 // eslint-disable-next-line quotes
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
 import BalanceLabel from '../../components/BalanceLabel';
 import Colors from '../../styles/Colors';
+
+
+
 const NewEntry = ({navigation}) => {
   const entry = navigation.getParam('entry', {
     id: null,
-    amount: '0.00',
+    amount: 0,
     entryAt: new Date(),
+    category: {id: null, name: 'Selecione'},
   });
 
-  const [amount, setAmount] = useState(`${entry.amount}`);
+  const [debit, setDebit] = useState(entry.amount <= 0);
+  const [amount, setAmount] = useState(entry.amount);
+  const [category, setCategory] = useState(entry.category);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -28,6 +37,7 @@ const NewEntry = ({navigation}) => {
   const onSave = () => {
     const data = {
       amount: parseFloat(amount),
+      category: category,
     };
 
     console.log('NewEntry :: save ', data);
@@ -49,9 +59,17 @@ const NewEntry = ({navigation}) => {
       <BalanceLabel />
 
       <View>
-        <NewEntryInput value={amount} onChangeValue={setAmount} />
+        <NewEntryInput
+          value={amount}
+          onChangeValue={setAmount}
+          onChangeDebit={setDebit}
+        />
+        <NewEntryCategoryPicker
+          debit={debit}
+          category={category}
+          onChangeCategory={setCategory}
+        />
 
-        <TextInput style={styles.input} />
         <Button title="GPS" />
         <Button title="Camera" />
       </View>
